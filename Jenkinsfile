@@ -5,10 +5,16 @@ pipeline {
         }
     }
 
+environment {
+   PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
+   }
+
     stages {
-        stage('clone-code') {
+        stage('build begin') {
             steps {
-                git branch: 'main', url: 'https://github.com/odhigboisaac/viscap.git'
+	        echo "----- build started -----"
+                sh 'mvn clean deploy'
+		eccho "----- build cmplted -----"
             }
         }
     }
