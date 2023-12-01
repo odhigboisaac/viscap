@@ -14,7 +14,7 @@ environment {
             steps {
 	        echo "----- build started -----"
                 sh 'mvn clean deploy'
-		eccho "----- build cmplted -----"
+		echo "----- build cmplted -----"
             }
         }
     }
