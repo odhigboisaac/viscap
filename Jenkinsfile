@@ -19,12 +19,10 @@ environment {
         }
 
         stage('SonarQube analysis') {
-        environment {
-          scannerHome = tool 'sonar-scanner-viscap'
-         }
-        steps {
-           withSonarQubeEnv('sonarqube-server-viscap') { // If you have configured more than one global server connection, you can specify its name
-             sh "${scannerHome}/bin/sonar-scanner"
+        
+         steps {
+           withSonarQubeEnv(credentialsId: 'f225455e-ea59-40fa-8af7-08176e86507a', installationName: 'sonar-server-viscap') {
+            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
            }
           }     
         }      
