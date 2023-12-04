@@ -22,7 +22,7 @@ environment {
          scannerHome = tool 'sonar-scanner-viscap'
           }
        steps {
-        withSonarQubeEnv('sonar-server-viscap') { 
+        withSonarQubeEnv('sonar-server-viscap' envOnly: true) { 
           sh "${scannerHome}/bin/sonar-scanner"
          }
   
