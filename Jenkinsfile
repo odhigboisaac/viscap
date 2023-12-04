@@ -17,14 +17,15 @@ environment {
 		echo "----- build cmplted -----"
             }
         }
-
         stage('SonarQube analysis') {
-        
-         steps {
-           withSonarQubeEnv(credentialsId: 'f225455e-ea59-40fa-8af7-08176e86507a', installationName: 'sonar-server-viscap') {
-            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-           }
-          }     
-        }      
+        environment {
+         scannerHome = tool 'sonar-scanner-viscap'
+          }
+       steps {
+        withSonarQubeEnv('sonar-server-viscap') { 
+          sh "${scannerHome}/bin/sonar-scanner"
+         }
+  
+         
     }
 }
