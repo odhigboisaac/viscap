@@ -13,10 +13,18 @@ environment {
         stage('build begin') {
             steps {
 	        echo "----- build started -----"
-                sh 'mvn clean deploy'
+                sh 'mvn clean deploy -Dmaven.skip=true'
 		echo "----- build cmplted -----"
             }
-        }
+        } 
+
+	stage ('Unit test') {
+	 steps {
+	   echo"--------Unit test started-------"
+           sh 'mvn surefire-report:report'
+	   echo"--------Unit test compltedd-----"
+	 }
+	}
         stage('SonarQube analysis') {
         environment {
          scannerHome = tool 'viscap-sonar-scanner'
