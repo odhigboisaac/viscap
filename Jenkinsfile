@@ -19,7 +19,7 @@ environment {
         }
         stage('SonarQube analysis') {
         environment {
-         scannerHome = tool 'viscap-sonar-server'
+         scannerHome = tool 'viscap-sonar-scanner'
           }
        steps {
         withSonarQubeEnv('viscap-sonarqube-server') { 
