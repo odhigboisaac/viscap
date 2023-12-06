@@ -13,24 +13,24 @@ environment {
    PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
    }
 
-    stages {
-        stage('build begin') {
+  stages {
+    stage('build begin') {
             steps {
-	        echo "----- build started -----"
+	              echo "----- build started -----"
                 sh 'mvn clean deploy -Dmaven.skip=true'
-		echo "----- build cmplted -----"
+		           echo "----- build cmplted -----"
             }
-        } 
+      } 
 
-	stage ('Unit test') {
-	 steps {
-	   echo"--------Unit test started-------"
+	  stage ('Unit test') {
+	   steps {
+	       echo"--------Unit test started-------"
            sh 'mvn surefire-report:report'
-	   echo"--------Unit test compltedd-----"
-	 }
-	}
-        stage('SonarQube analysis') {
-        environment {
+	       echo"--------Unit test compltedd-----"
+	      }
+	  }
+    stage('SonarQube analysis') {
+    environment {
          scannerHome = tool 'viscap-sonar-scanner'
           }
         steps {
@@ -38,9 +38,9 @@ environment {
           sh "${scannerHome}/bin/sonar-scanner"
           }      
          }
-        }  
+    }  
       
-       stage("Quality Gate"){
+    stage("Quality Gate"){
         steps {
          script {
             timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
@@ -51,9 +51,9 @@ environment {
              }
             }
            }
-         }
+    }
         
-       stage("Jar Publish") {
+    stage("Jar Publish") {
         steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
@@ -77,9 +77,9 @@ environment {
             
                  }
               }   
-           } 
+      } 
 
-      stage(" Docker Build ") {
+    stage(" Docker Build ") {
        steps {
         script {
            echo '<--------------- Docker Build Started --------------->'
@@ -87,8 +87,8 @@ environment {
            echo '<--------------- Docker Build Ends --------------->'
            }
          }
-       }
-     stage (" Docker Publish "){
+    }
+    stage (" Docker Publish "){
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
@@ -101,5 +101,5 @@ environment {
       } 
    
 
-   }
+  }
 }
