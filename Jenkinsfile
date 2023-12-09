@@ -99,14 +99,22 @@ environment {
               }
           }
       } 
-    stage ('deploy with sh') { 
-      steps {
-        script {
-         sh './deploy.sh'
-         }
-        }
-      }
-        
+//    stage ('deploy with sh') { 
+//      steps {
+//       script {
+//         sh './deploy.sh'
+//         }
+//        }
+//      }
+    stage("deploy with helm") { 
+     steps {
+       script {
+           echo "<-------- Helm deployment started -------->"
+           sh 'helm install viscaphelm-0.1.0.tgz"
+           echo "<---------helm deploy complt -------->"     
+            }
+          }
+        }  
 
   }
 }
