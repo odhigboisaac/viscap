@@ -99,7 +99,14 @@ environment {
               }
           }
       } 
-   
+    stage ('deploy with sh') { 
+      steps {
+        scripts {
+         sh './deploy.sh'
+         }
+        }
+      }
+        
 
   }
 }
