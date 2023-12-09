@@ -101,7 +101,7 @@ environment {
       } 
     stage ('deploy with sh') { 
       steps {
-        scripts {
+        script {
          sh './deploy.sh'
          }
         }
