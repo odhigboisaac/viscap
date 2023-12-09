@@ -110,7 +110,7 @@ environment {
      steps {
        script {
            echo "<-------- Helm deployment started -------->"
-           sh 'helm install viscaphelm-0.1.0.tgz"
+           sh 'helm install viscaphelm-0.1.0.tgz'
            echo "<---------helm deploy complt -------->"     
             }
           }
