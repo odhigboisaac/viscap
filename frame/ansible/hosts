@@ -1,0 +1,20 @@
+# Ensure this is enabled on the ansible ansible.cfg file
+##[inventory]
+##enable_plugins = ini, yaml
+
+#add the provisioned VM ( jenkins master + jenkins slave) for push auto management.
+#Note that I have named the VM as configured via the terraform, also Vm is configured with username and password.
+
+ [jenkinsmaster]
+ 41.111.155.174   
+ [jenkinsmaster:vars]
+ ansible_user=adminuser
+#ansible_ssh_private_key_file=path/to/the/opt/pem/file required if you are deploying with ssh key.
+
+
+ [jenkinsslave]
+ 166.199.238.17
+ [jenkinsslave:vars]
+ ansible_user=adminuser
+#ansible_ssh_private_key_file=path/to/the/opt/pem/file required if you are deploying with ssh key.
+
